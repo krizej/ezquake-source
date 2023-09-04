@@ -59,6 +59,11 @@ void main()
 #endif
 
 	FlatColor = flatColor;
+
+	// FIXME: the ati/amd driver is retarded and puts garbage in SamplerMappingsBuffer (r_buffer_brushmodel_worldsamplers_ssbo)
+	// this of course does not guarantee correct values, but it guarantees that the garbage will not affect other flags
+	textureFlags &= EZQ_SURFACE_HAS_LUMA | EZQ_SURFACE_ALPHATEST | EZQ_SURFACE_HAS_FB | EZQ_SURFACE_LIT_TURB;
+
 	Flags = vboFlags | drawCallFlags | textureFlags;
 
 	if (lightmapCoord.z < 0) {
