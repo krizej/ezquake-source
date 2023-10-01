@@ -74,7 +74,6 @@ static gl_enum_value_t image_types[] = {
 
 void GL_Clear(qbool clear_color)
 {
-	R_ApplyRenderingState(r_state_default_3d);
 	glClear((clear_color ? GL_COLOR_BUFFER_BIT : 0) | GL_DEPTH_BUFFER_BIT);
 }
 
