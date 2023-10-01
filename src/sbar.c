@@ -182,7 +182,6 @@ void Sbar_DontShowTeamScores (void) {
 void Sbar_ShowScores (void) {
 	if (sb_showscores)
 		return;
-
 	sb_showscores = true;
 	sb_updates = 0;
 }
@@ -1213,6 +1212,9 @@ void Sbar_SoloScoreboard (void)
 	char	str[256];
 	int		len;
 
+	if (Sbar_IsStandardBar())
+		Sbar_DrawPic (0, 0, sb_scorebar);
+
 	sprintf (str,"Kills: %i/%i", cl.stats[STAT_MONSTERS], cl.stats[STAT_TOTALMONSTERS]);
 	Sbar_DrawString (8, 12, str);
 
@@ -2192,7 +2194,7 @@ void Sbar_Draw(void) {
 		sbar_xofs = 0;
 
 	// Top line. Do not show with +showscores
-	if (sb_lines > 24 && scr_newHud.value != 1 && !sb_showscores && !sb_showteamscores) 
+	if (sb_lines > 24 && scr_newHud.value != 1)
 	{ 
 		if (!cl.spectator || cl.autocam == CAM_TRACK)
 			Sbar_DrawInventory();
@@ -2270,10 +2272,14 @@ void Sbar_Draw(void) {
 
 	// clear unused areas in GL
 	if (vid.width > 320 && !headsup) {
-		if (scr_centerSbar.value)	// left
-			Draw_TileClear (0, vid.height - sb_lines, sbar_xofs, sb_lines);
-		Draw_TileClear (320 + sbar_xofs, vid.height - sb_lines, vid.width - (320 + sbar_xofs), sb_lines);	// right
+		if (scr_centerSbar.value) {
+			Draw_TileClear(0, vid.height - sb_lines, sbar_xofs, sb_lines); // left
+			Draw_TileClear(sbar_xofs + 320, vid.height - sb_lines, vid.width - sbar_xofs - 320, sb_lines); // right
+		} else {
+			Draw_TileClear(320, vid.height - sb_lines, vid.width, sb_lines); // right only
+		}
 	}
+
 	if (!headsup && cl.spectator && cl.autocam != CAM_TRACK && sb_lines > SBAR_HEIGHT)
 		Draw_TileClear (sbar_xofs, vid.height - sb_lines, 320, sb_lines - SBAR_HEIGHT);
 

@@ -51,7 +51,7 @@ cvar_t	scr_conback			= {"scr_conback", "1"};
 void OnChange_scr_conpicture(cvar_t *, char *, qbool *);
 cvar_t  scr_conpicture      = {"scr_conpicture", "conback", 0, OnChange_scr_conpicture};
 cvar_t	scr_menualpha		= {"scr_menualpha", "0.7"};
-cvar_t	scr_menudrawhud		= {"scr_menudrawhud", "0"};
+cvar_t	scr_menudrawhud		= {"scr_menudrawhud", "1"};
 
 cvar_t  r_smoothtext        = { "r_smoothtext",      "1" };
 cvar_t  r_smoothcrosshair   = { "r_smoothcrosshair", "1" };

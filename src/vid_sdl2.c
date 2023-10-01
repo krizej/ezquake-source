@@ -533,7 +533,10 @@ static void VID_RestoreSystemGamma(void)
 static void window_event(SDL_WindowEvent *event)
 {
 	extern qbool scr_skipupdate;
+	extern int sb_updates;
 	int flags = SDL_GetWindowFlags(sdl_window);
+
+	sb_updates = 0;
 
 	switch (event->event) {
 		case SDL_WINDOWEVENT_MINIMIZED:
