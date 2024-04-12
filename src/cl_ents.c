@@ -874,7 +874,7 @@ void CL_LinkPacketEntities(void)
 			// Spawn light flashes, even ones coming from invisible objects.
 			if ((state->effects & (EF_BLUE | EF_RED | EF_GREEN)) == (EF_BLUE | EF_RED | EF_GREEN)) 
 			{
-				CL_NewDlight (state->number, state->origin, 200 + flicker, 0.1, lt_white, 0);
+				CL_NewDlight (state->number, state->origin, 200 + flicker, 0.1, lt_redblue, 0);
 			} 
 			else if ((state->effects & (EF_BLUE | EF_RED)) == (EF_BLUE | EF_RED)) 
 			{
@@ -882,11 +882,11 @@ void CL_LinkPacketEntities(void)
 			} 
 			else if ((state->effects & (EF_BLUE | EF_GREEN)) == (EF_BLUE | EF_GREEN)) 
 			{
-				CL_NewDlight (state->number, state->origin, 200 + flicker, 0.1, lt_bluegreen, 0);
+				CL_NewDlight (state->number, state->origin, 200 + flicker, 0.1, lt_blue, 0);
 			}
 			else if ((state->effects & (EF_RED | EF_GREEN)) == (EF_RED | EF_GREEN)) 
 			{
-				CL_NewDlight (state->number, state->origin, 200 + flicker, 0.1, lt_redgreen, 0);
+				CL_NewDlight (state->number, state->origin, 200 + flicker, 0.1, lt_red, 0);
 			} 
 			else if (state->effects & EF_BLUE)
 			{
@@ -898,7 +898,7 @@ void CL_LinkPacketEntities(void)
 			}
 			else if (state->effects & EF_GREEN) 
 			{
-				CL_NewDlight (state->number, state->origin, 200 + flicker, 0.1, lt_green, 0);
+				// CL_NewDlight (state->number, state->origin, 200 + flicker, 0.1, lt_green, 0);
 			}
 			else if (state->effects & EF_BRIGHTLIGHT) 
 			{
@@ -1744,7 +1744,7 @@ static void CL_LinkPlayers(void)
 
 			if ((state->effects & (EF_BLUE | EF_RED | EF_GREEN)) == (EF_BLUE | EF_RED | EF_GREEN)) 
 			{
-				CL_NewDlight (j + 1, org, 200 + flicker, 0.1, lt_white, 0);
+				CL_NewDlight (j + 1, org, 200 + flicker, 0.1, lt_redblue, 0);
 			} 
 			else if ((state->effects & (EF_BLUE | EF_RED)) == (EF_BLUE | EF_RED)) 
 			{
@@ -1752,11 +1752,11 @@ static void CL_LinkPlayers(void)
 			}
 			else if ((state->effects & (EF_BLUE | EF_GREEN)) == (EF_BLUE | EF_GREEN)) 
 			{
-				CL_NewDlight (j + 1, org, 200 + flicker, 0.1, lt_bluegreen, 0);
+				CL_NewDlight (j + 1, org, 200 + flicker, 0.1, lt_blue, 0);
 			} 
 			else if ((state->effects & (EF_RED | EF_GREEN)) == (EF_RED | EF_GREEN)) 
 			{
-				CL_NewDlight (j + 1, org, 200 + flicker, 0.1, lt_redgreen, 0);
+				CL_NewDlight (j + 1, org, 200 + flicker, 0.1, lt_red, 0);
 			} 
 			else if (state->effects & EF_BLUE) 
 			{
@@ -1768,7 +1768,7 @@ static void CL_LinkPlayers(void)
 			}
 			else if (state->effects & EF_GREEN) 
 			{
-				CL_NewDlight (j + 1, org, 200 + flicker, 0.1, lt_green, 0);
+				// CL_NewDlight (j + 1, org, 200 + flicker, 0.1, lt_green, 0);
 			} 
 			else if (state->effects & EF_BRIGHTLIGHT) 
 			{
