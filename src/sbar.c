@@ -147,7 +147,7 @@ cvar_t  scr_scoreboard_wipeout	 	  = {"scr_scoreboard_wipeout",   	  "1"};
 qbool Sbar_IsStandardBar(void)
 {
 	// Old status bar is turned on, or the screen size is less than full width
-	return cl_sbar.value || scr_viewsize.value < 100;
+	return cl_sbar.integer == 1 || scr_viewsize.value < 100;
 }
 
 static qbool Sbar_ShowScoreboardIndicator (void)
@@ -800,24 +800,25 @@ static void Sbar_DrawInventory(void)
 
 	// ammo counts
 	if (sbar_drawammocounts.integer) { // kazik
+		int yoff = 1;
 		for (i = 0; i < 4; i++) {
 			snprintf (num, sizeof(num), "%3i", cl.stats[STAT_SHELLS + i]);
 			if (headsup) {
 				Sbar_DrawSubPic(hudswap ? 0 : vid.width - 42, -24 - (4 - i) * 11, sb_ibar, 3 + (i * 48), 0, 42, 11);
 				if (num[0] != ' ')
-					Draw_Character (hudswap ? 7: vid.width - 35, vid.height - SBAR_HEIGHT - 24 - (4 - i) * 11, 18 + num[0] - '0');
+					Draw_Character (hudswap ? 7: vid.width - 35, vid.height - SBAR_HEIGHT - 24 - (4 - i) * 11 + yoff, 18 + num[0] - '0');
 				if (num[1] != ' ')
-					Draw_Character (hudswap ? 15: vid.width - 27, vid.height - SBAR_HEIGHT - 24 - (4 - i) * 11, 18 + num[1] - '0');
+					Draw_Character (hudswap ? 15: vid.width - 27, vid.height - SBAR_HEIGHT - 24 - (4 - i) * 11 + yoff, 18 + num[1] - '0');
 				if (num[2] != ' ')
-					Draw_Character (hudswap ? 23: vid.width - 19, vid.height - SBAR_HEIGHT - 24 - (4 - i) * 11, 18 + num[2] - '0');
+					Draw_Character (hudswap ? 23: vid.width - 19, vid.height - SBAR_HEIGHT - 24 - (4 - i) * 11 + yoff, 18 + num[2] - '0');
 			}
 			else {
 				if (num[0] != ' ')
-					Sbar_DrawCharacter ((6 * i + 1) * 8 - 2, -24, 18 + num[0] - '0');
+					Sbar_DrawCharacter ((6 * i + 1) * 8 - 2, -24+yoff, 18 + num[0] - '0');
 				if (num[1] != ' ')
-					Sbar_DrawCharacter ((6 * i + 2) * 8 - 2, -24, 18 + num[1] - '0');
+					Sbar_DrawCharacter ((6 * i + 2) * 8 - 2, -24+yoff, 18 + num[1] - '0');
 				if (num[2] != ' ')
-					Sbar_DrawCharacter ((6 * i + 3) * 8 - 2, -24, 18 + num[2] - '0');
+					Sbar_DrawCharacter ((6 * i + 3) * 8 - 2, -24+yoff, 18 + num[2] - '0');
 			}
 		}
 	}
@@ -877,13 +878,13 @@ static void Sbar_DrawFrags_DrawCellPlayer(int x, int y, player_info_t* player, i
 	// draw number
 	snprintf (num, sizeof(num), "%3i", bound(-99, player->frags, 999));
 
-	Sbar_DrawCharacter ((x + 1) * 8 , -24, num[0]);
-	Sbar_DrawCharacter ((x + 2) * 8 , -24, num[1]);
-	Sbar_DrawCharacter ((x + 3) * 8 , -24, num[2]);
+	Sbar_DrawCharacter ((x + 1) * 8 , -23, num[0]);
+	Sbar_DrawCharacter ((x + 2) * 8 , -23, num[1]);
+	Sbar_DrawCharacter ((x + 3) * 8 , -23, num[2]);
 
 	if (brackets) {
-		Sbar_DrawCharacter (x * 8 + 2, -24, 16);
-		Sbar_DrawCharacter ((x + 4) * 8 - 4, -24, 17);
+		Sbar_DrawCharacter (x * 8 + 3, -23, 16);
+		Sbar_DrawCharacter ((x + 4) * 8 - 3, -23, 17);
 	}
 }
 

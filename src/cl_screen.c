@@ -333,7 +333,7 @@ void SCR_CalcRefdef(void)
 	}
 	size /= 100.0;
 
-	if (!cl_sbar.value && full)
+	if (cl_sbar.integer != 1 && full)
 		h = vid.height;
 	else
 		h = vid.height - sb_lines;
@@ -345,7 +345,7 @@ void SCR_CalcRefdef(void)
 	}
 
 	r_refdef.vrect.height = vid.height * size;
-	if (cl_sbar.value || !full) {
+	if (cl_sbar.integer == 1 || !full) {
 		if (r_refdef.vrect.height > vid.height - sb_lines) {
 			r_refdef.vrect.height = vid.height - sb_lines;
 			height_reduced = true;

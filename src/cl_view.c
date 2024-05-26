@@ -898,9 +898,9 @@ static void V_AddViewWeapon(float bob)
 
 	// fudge position around to keep amount of weapon visible roughly equal with different FOV
 	if (!scr_fovmode.value) {
-		if (cl_sbar.value && scr_newHud.value == 0 && scr_viewsize.value == 110)
+		if (cl_sbar.integer == 1 && scr_newHud.value == 0 && scr_viewsize.value == 110)
 			cent->current.origin[2] += 1;
-		else if (cl_sbar.value && scr_newHud.value == 0 && scr_viewsize.value == 100)
+		else if (cl_sbar.integer == 1 && scr_newHud.value == 0 && scr_viewsize.value == 100)
 			cent->current.origin[2] += 2;
 		else if (scr_viewsize.value == 90)
 			cent->current.origin[2] += 1;

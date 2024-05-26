@@ -467,7 +467,7 @@ void R_SetViewports(int glx, int x, int gly, int y2, int w, int h, float max)
 			R_Viewport(glx + x, gly + y2, w, h);
 		}
 		else if (CL_MultiviewCurrentView() == 1) {
-			int height = cl_sbar.integer ? h : glheight;
+			int height = cl_sbar.integer == 1 ? h : glheight;
 			int inset_left = glx + x + (cl_mvinset_right.integer ? glwidth - cl_mvinset_size_x.value * glwidth : 0) + cl_mvinset_offset_x.value;
 			int inset_top = gly + y2 + (cl_mvinset_top.integer ? height - cl_mvinset_size_y.value * height : 0) - cl_mvinset_offset_y.value;
 			int inset_width = w * cl_mvinset_size_x.value;

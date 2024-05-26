@@ -780,8 +780,9 @@ void Draw_TextBox(float x, float y, int width, int lines)
 void Draw_TileClear(int x, int y, int w, int h)
 {
 	byte white[4] = { 255, 255, 255, 255 };
-
-	R_DrawImage(x, y, w, h, x / 64.0, y / 64.0, w / 64.0, h / 64.0, white, false, draw_backtile->texnum, false, false);
+	if(cl_sbar.integer == 1) {
+		R_DrawImage(x, y, w, h, x / 64.0, y / 64.0, w / 64.0, h / 64.0, white, false, draw_backtile->texnum, false, false);
+	}
 }
 
 void Draw_AlphaRectangleRGB(float x, float y, float w, float h, float thickness, qbool fill, color_t color)
